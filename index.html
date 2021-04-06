@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Import the component -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <model-viewer src="https://cdn.glitch.com/b14b47a4-17b4-4b0b-9cf4-ceacf43fd6da%2FBodyColor.glb?v=1617721668778" alt="A 3D model of an astronaut" auto-rotate camera-controls></model-viewer>
 
-    <title>Hello!</title>
-    
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
-    <!-- import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
-  </head>  
-  <body>
-    <h1>Hi there!</h1>
-    
-    <p>
-      I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch</a>!
-    </p>
+<model-viewer id="color" camera-controls interaction-prompt="none" src="https://cdn.glitch.com/b14b47a4-17b4-4b0b-9cf4-ceacf43fd6da%2FBodyColor.glb?v=1617721668778" alt="A 3D model of an astronaut">
+  <div class="controls" ,="" id="color-controls">
+    <button data-color="1,0,0,1">Red</button>
+    <button data-color="0,1,0,1">Green</button>
+    <button data-color="0,0,1,1">Blue</button>
+  </div>
+</model-viewer>
+<script>
+const modelViewerColor = document.querySelector("model-viewer#color");
 
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js" defer></script>
-  </body>
+document.querySelector('#color-controls').addEventListener('click', (event) => {
+  const colorString = event.target.dataset.color;
+
+  if (!colorString) {
+    return;
+  }
+
+  const color = colorString.split(',')
+      .map(numberString => parseFloat(numberString));
+
+  console.log('Changing color to: ', color);
+  const [material] = modelViewerColor.model.materials;
+  material.pbrMetallicRoughness.setBaseColorFactor(color);
+});
+</script>
 </html>
