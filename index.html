@@ -15,15 +15,15 @@
 
   <div class="slider">
     <div class="slides">
-      <button class="slide selected" onclick="switchSrc(this, 'Chair')" style="background-image: url('https://cdn.glitch.com/b14b47a4-17b4-4b0b-9cf4-ceacf43fd6da%2FJeep.jpg?v=1617723051413');">
+      <button class="slide selected" onclick="switchSrc(this, 'Chair')" style="background-image: url('https://cdn.glitch.com/b14b47a4-17b4-4b0b-9cf4-ceacf43fd6da%2FBodyColor.jpg');">
 
-      </button><button class="slide" onclick="switchSrc(this, 'Mixer')" style="background-image: url('https://cdn.glitch.com/b14b47a4-17b4-4b0b-9cf4-ceacf43fd6da%2Fjeep-wrangler-rubicon-recon-1-1597313728.jpg?v=1617723072167');">
+      </button><button class="slide" onclick="switchSrc(this, 'Mixer')" style="background-image: url('https://cdn.glitch.com/b14b47a4-17b4-4b0b-9cf4-ceacf43fd6da%2FBodyColor2.jpg');">
     </button></div>
     <script type="module">
   const modelViewer = document.querySelector("model-viewer");
 
   window.switchSrc = (element, name) => {
-    const base = "../../assets/ShopifyModels/" + name;
+    const base = "https://cdn.glitch.com/assets/" + name;
     modelViewer.src = base + '.glb';
     modelViewer.poster = base + '.jpg';
     const slides = document.querySelectorAll(".slide");
